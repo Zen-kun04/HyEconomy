@@ -3,7 +3,6 @@ package com.dunystudios.hytale.plugins.commands;
 import com.dunystudios.hytale.plugins.HyEconomy;
 import com.dunystudios.hytale.plugins.config.ConfigManager;
 import com.hypixel.hytale.protocol.GameMode;
-import com.hypixel.hytale.server.core.HytaleServer;
 import com.hypixel.hytale.server.core.Message;
 import com.hypixel.hytale.server.core.NameMatching;
 import com.hypixel.hytale.server.core.command.system.CommandContext;
@@ -33,9 +32,8 @@ public class PayCommand extends CommandBase {
 
     @Override
     protected void executeSync(@Nonnull CommandContext commandContext) {
-        if (commandContext.sender() instanceof Player) {
+        if (commandContext.sender() instanceof Player player) {
             try {
-                Player player = (Player) commandContext.sender();
                 String playerTarget = playerArg.get(commandContext);
                 float amount = balanceArg.get(commandContext);
 
@@ -52,6 +50,8 @@ public class PayCommand extends CommandBase {
                                             "{max_balance}", String.valueOf(configManager.getData().balance.maximum)
                                     ).replace(
                                             "{min_balance}", String.valueOf(configManager.getData().balance.minimum)
+                                    ).replace(
+                                            "{player}", playerTarget
                                     )
                             )
                     );
