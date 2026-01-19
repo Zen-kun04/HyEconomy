@@ -1,6 +1,7 @@
 package com.dunystudios.hytale.plugins;
 
 import com.dunystudios.hytale.plugins.commands.BalanceCommand;
+import com.dunystudios.hytale.plugins.commands.BaltopCommand;
 import com.dunystudios.hytale.plugins.commands.PayCommand;
 import com.dunystudios.hytale.plugins.commands.admin.EcoCommand;
 import com.dunystudios.hytale.plugins.config.ConfigManager;
@@ -21,9 +22,9 @@ public class HyEconomy extends JavaPlugin {
     public HyEconomy(@Nonnull JavaPluginInit init) {
         super(init);
         this.instance = this;
-        this.playerManager = new PlayerManager();
         this.configManager = new ConfigManager();
         this.configManager.setup();
+        this.playerManager = new PlayerManager(configManager.getData());
         this.economy = new Economy(playerManager, configManager);
     }
 
@@ -34,6 +35,7 @@ public class HyEconomy extends JavaPlugin {
         new PlayerLeave();
         getCommandRegistry().registerCommand(new BalanceCommand("balance", "Check your balance"));
         getCommandRegistry().registerCommand(new PayCommand("pay", "Pay another player"));
+        getCommandRegistry().registerCommand(new BaltopCommand("baltop", "View top player balances"));
         getCommandRegistry().registerCommand(new EcoCommand("eco", "Admin economy commands"));
 
         getLogger().atInfo().log("HyEconomy plugin has been initialized.");

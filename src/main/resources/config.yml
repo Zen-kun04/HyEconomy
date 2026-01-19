@@ -1,3 +1,11 @@
+storage:
+  type: "json" # Options: json, sqlite, mysql, postgresql
+  mysql:
+    host: "localhost"
+    port: 3306
+    database: "hyeconomy"
+    username: "root"
+    password: "password"
 chat:
   currency: "$"
   decimal_places: 2

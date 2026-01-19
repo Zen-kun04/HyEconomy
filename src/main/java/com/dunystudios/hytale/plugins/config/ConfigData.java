@@ -1,9 +1,23 @@
 package com.dunystudios.hytale.plugins.config;
 
 public class ConfigData {
+    public Storage storage;
     public Chat chat;
     public Balance balance;
     public Messages messages;
+
+    public static class Storage {
+        public String type;
+        public MySQL mysql;
+
+        public static class MySQL {
+            public String host;
+            public int port;
+            public String database;
+            public String username;
+            public String password;
+        }
+    }
 
     public static class Chat {
         public String currency;
